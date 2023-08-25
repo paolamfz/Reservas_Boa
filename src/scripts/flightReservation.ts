@@ -2,8 +2,8 @@ import { chromium, Browser, Page, LaunchOptions, BrowserContextOptions } from 'p
 import dotenv from 'dotenv';
 import { SITE_URL } from '../config/siteConfig';
 import { navigateTo } from '../utils/helpers';
-import BookingFlightPage from './BookingFlightPage'; 
-import ConfirmationReservationPage from './ConfirmationBookingPage';
+import ReservaVuelosPage from './reservaVuelosPage'; 
+import ConfirmacionReservaPage from './ConfirmacionReservaPage';
 dotenv.config();
 
 async function automateFlightReservation() {
@@ -16,19 +16,20 @@ async function automateFlightReservation() {
 
         await navigateTo(SITE_URL, page);
 
-        const bookingPage = new BookingFlightPage(page);
-        const confirmationPage = new ConfirmationReservationPage(page);
+        const reservaPage = new ReservaVuelosPage(page);
+        const confirmacionPage = new ConfirmacionReservaPage(page);
 
-        await bookingPage.selectOrigin('COCHABAMBA');
-        await bookingPage.selectDestination('LA PAZ');
-        await bookingPage.selectOnlyOneWay();
-        await bookingPage.chooseDepartureDate();
-        await bookingPage.clickSearchFlight();
+        await reservaPage.selectOrigen('COCHABAMBA');
+        await reservaPage.selectDestino('LA PAZ');
+        await reservaPage.selectSoloIda();
+        await reservaPage.chooseFechaSalida();
+        await reservaPage.clickBuscarVuelos();
 
-        await confirmationPage.clickConfirmTicket();
-        await confirmationPage.fillPassengerData('Paola', 'Montano', 'montanofernandezpaola@gmail.com', '79373947');
-        await confirmationPage.selectDocumentTypeAndId('CI', '9315248cb');
-        await confirmationPage.confirmReservation();
+        await confirmacionPage.clickPasajeCajaSeleccionado();
+        await confirmacionPage.clickConfirmarPasaje();
+        await confirmacionPage.completarDatosPasajero('Paola', 'Montano', 'montanofernandezpaola@gmail.com', '79373947');
+        await confirmacionPage.seleccionarTipoDocumentoYNumero('CI', '9315248cb');
+        await confirmacionPage.confirmarReserva();
 
 }
 
