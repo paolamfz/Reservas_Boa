@@ -1,13 +1,13 @@
 export const SITE_URL = process.env.SITE_URL || 'https://www.boa.bo/';
 export const selectors = {
     reservaVuelos: '#reserva_vuelos',
-    origen: '#select_desde.origen-destino',
-    destino: '#select_hasta.origen-destino',
-    soloIda: '#rbtn_ida.radio-button',
-    calendario: "[id='picker_salida']",
-    diaEscogido: 'a:has-text("28")',
-    buscarVuelosButton: '#btn_buscar_vuelos',
-    vueloSeleccionado: '#vuelosIda_1 .desc_familias',
+    origin: '#select_desde.origen-destino',
+    destination: '#select_hasta.origen-destino',
+    onlyOneWay: '#rbtn_ida.radio-button',
+    calendar: "[id='picker_salida']",
+    chosenDate: 'a:has-text("30")',
+    searchFlightButton: '#btn_buscar_vuelos',
+    chosenFlight: '#vuelosIda_1 .desc_familias',
     pasajeCajaSeleccionado: 'div.cajaFamilia',
     confirmarPasajeButton: '//div[2]/div[1]/div[3]//table[4]//tr//div',
     nombrePasajero: '#tbx_px1_nombres',
@@ -16,5 +16,5 @@ export const selectors = {
     telefonoPasajero: '#tbx_px1_telefono',
     tipoDocumento: '#select_px1_tipo_documento',
     numeroDocumento: '#tbx_px1_documento',
-    confirmarReservaButton: '//div[2]/div[1]/div[4]/div/table//tr//div', 
+    confirmReservationButton: '//div[2]/div[1]/div[4]/div/table//tr//div', 
 };

@@ -2,8 +2,8 @@ import { chromium, Browser, Page, LaunchOptions, BrowserContextOptions } from 'p
 import dotenv from 'dotenv';
 import { SITE_URL } from '../config/siteConfig';
 import { navigateTo } from '../utils/helpers';
-import ReservaVuelosPage from './reservaVuelosPage'; 
-import ConfirmacionReservaPage from './ConfirmacionReservaPage';
+import BookingFlightPage from './BookingFlightPage';
+import ConfirmationBookingPage from './confirmationBookingPage';
 dotenv.config();
 
 async function automateFlightReservation() {
@@ -16,20 +16,20 @@ async function automateFlightReservation() {
 
         await navigateTo(SITE_URL, page);
 
-        const reservaPage = new ReservaVuelosPage(page);
-        const confirmacionPage = new ConfirmacionReservaPage(page);
+        const reservaPage = new BookingFlightPage(page);
+        const confirmacionPage = new ConfirmationBookingPage(page);
 
-        await reservaPage.selectOrigen('COCHABAMBA');
-        await reservaPage.selectDestino('LA PAZ');
-        await reservaPage.selectSoloIda();
-        await reservaPage.chooseFechaSalida();
-        await reservaPage.clickBuscarVuelos();
+        await reservaPage.selectOrigin('COCHABAMBA');
+        await reservaPage.selectDestination('LA PAZ');
+        await reservaPage.selectOnlyOneWay();
+        await reservaPage.chooseDepartureDate();
+        await reservaPage.clickSearchFlight();
 
-        await confirmacionPage.clickPasajeCajaSeleccionado();
-        await confirmacionPage.clickConfirmarPasaje();
-        await confirmacionPage.completarDatosPasajero('Paola', 'Montano', 'montanofernandezpaola@gmail.com', '79373947');
-        await confirmacionPage.seleccionarTipoDocumentoYNumero('CI', '9315248cb');
-        await confirmacionPage.confirmarReserva();
+        await confirmacionPage.clickChosenTicket();
+        await confirmacionPage.clickConfirmTicket();
+        await confirmacionPage.fillPassengerData('Paola', 'Montano', 'montanofernandezpaola@gmail.com', '79373947');
+        await confirmacionPage.selectDocumemtTypeAndId('CI', '9315248cb');
+        await confirmacionPage.confirmReservation();
 
 }
 
