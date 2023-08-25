@@ -10,11 +10,10 @@ class BookingFlightPage {
 
     async selectDestination(destination: string) {
         await this.page.selectOption(selectors.destination, destination);
-
+        await this.page.waitForLoadState();
     }
 
     async selectOnlyOneWay() {
-        await this.page.waitForLoadState();
         await this.page.click(selectors.onlyOneWay);
     }
 

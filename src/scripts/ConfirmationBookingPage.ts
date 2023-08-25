@@ -10,24 +10,25 @@ class ConfirmationBookingPage {
 
     async clickConfirmTicket() {
         await this.page.click(selectors.confirmTicketButton);
-        await this.page.waitForLoadState();
+        await this.page.pause();
     }
 
-    async fillPassengerData(name: string, lastname: string, email: string, phone: string) {
-        await this.page.fill(selectors.passengerName, name);
-        await this.page.fill(selectors.lastNamePassenger, lastname);
+    async fillPassengerData(nombre: string, apellido: string, email: string, telefono: string) {
+        await this.page.fill(selectors.passengerName, nombre);
+        await this.page.fill(selectors.passengerLastName, apellido);
         await this.page.fill(selectors.email, email);
-        await this.page.fill(selectors.phone, phone);
+        await this.page.fill(selectors.phone, telefono);
     }
 
-    async selectDocumentTypeAndId(documentType: string, documentId: string) {
-        await this.page.selectOption(selectors.documentType, documentType);
-        await this.page.fill(selectors.documentId, documentId);
+    async selectDocumemtTypeAndId(tipoDocumento: string, numeroDocumento: string) {
+        await this.page.selectOption(selectors.documentType, tipoDocumento);
+        await this.page.fill(selectors.documentId, numeroDocumento);
     }
 
     async confirmReservation() {
         await this.page.click(selectors.confirmReservationButton);
-        await this.page.waitForTimeout(3000);
+        await this.page.waitForTimeout(5000);
+        await this.page.close();
     }
 }
 
